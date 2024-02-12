@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <%- include('front-head.ejs') %>
+</head>
+<body>
+    <section class="login-page">
+        <div class="container">
+            <div class="row">
+                <div class="login-contain">
+                    <div class="col-xxl-12 d-flex  align-items-center py-5" style="min-height: 800px; height: 100vh;">
+                        <div class="col-xxl-6 col-lg-6 d-flex justify-content-end d-xs-none d-sm-none d-md-none d-lg-flex">
+                            <img src="/public/img/log-in.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-xxl-6 col-xs-12 col-sm-12 col-md-12 col-lg-6 d-flex justify-content-center">
+                            <div class=" col-xxl-8 d-flex justify-content-end">
+                            <div class="login-container d-flex ">
+                                <div class="">
+                                    <h2>Welcome To Fastkart</h2>
+                                    <span>Log In Your Account</span>
+                                </div>
+                                
+                                <form action="/loginUser" method="post">
+                                    <div class="form-group">
+                                        <input type="email" id="email" name="email" placeholder="Email address"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="password" id="password" name="password" placeholder="Password"
+                                            required>
+                                    </div>
+                                    <div class="form-group d-flex align-items-center justify-content-between">
+                                        <div class="d-flex">
+                                            <input type="checkbox" id="remember" name="remember">
+                                            <label for="remember">Remember me</label>
+                                        </div>
+                                        <a href="/forgotpassword">Forgot Password?</a>
+                                    </div>
+                                    <a href="#">
+                                        <button type="submit" class="login-btn">Login</button>
+                                    </a>
+                                </form>
+                                <h6><span>OR</span></h6>
+                                <div class="options ">
+                                    <a href="#"><button class="login-facebook"><i class="ri-facebook-fill fb"></i>Login
+                                            with Facebook</button></a>
+                                    <a href="#"><button class="login-google"><i class="ri-google-fill gl"></i>Login with
+                                            Google</button></a>
+                                </div>
+                                <h6></h6>
+                                <div class="sign-up text-center">
+                                    <p>Don't have an account?</p> <a href="/register">Sign up</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+</html>
