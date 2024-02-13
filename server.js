@@ -4,10 +4,11 @@ const port= 8000
 const app =express()
 const flash = require('connect-flash');
 const db = require('./config/db')
-
+const cookieParser = require('cookie-parser');
 const passport = require('passport');
 const passportLocal = require('./config/passportstr')
 const session = require('express-session');
+app.use(cookieParser())
 
 app.use(session({
     name : 'idk',
@@ -29,6 +30,7 @@ app.use(passport.setUser)
 
 
 app.use('/',require('./routes/index'))
+app.use('/',require('./routes/adminRoutes'))
 
 
 app.listen(port,(err) => {

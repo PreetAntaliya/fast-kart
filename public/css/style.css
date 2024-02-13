@@ -2377,7 +2377,7 @@ header .top-header .rs-side-bar .offcanvas .modal-backdrop.show {
 
 .rs-foot {
   background-color: #0da487;
-  position: sticky;
+  position: fixed;
   bottom: 0%;
   width: 100%;
   padding: 7px 100px;

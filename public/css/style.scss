@@ -2586,7 +2586,7 @@ header {
 // ===Rs-foot-fixed-start===
 .rs-foot{
     background-color: $primary-color;
-    position: sticky;
+    position: fixed;
     bottom: 0%;
     width: 100%;
     padding: 7px 100px;

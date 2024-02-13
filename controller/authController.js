@@ -117,24 +117,24 @@ const otpPage = async(req,res) => {
 const postOtp = async (req, res) => {
     try {
         let userOtp = req.body.otp;
-        let otpCookie = req.cookies.otp;
+        let cookieOtp = req.cookies.otp;
 
-        console.log('otpCookie:', otpCookie);
+        console.log(`user otp is ${userOtp}`);
+        console.log('cookieOtp:', cookieOtp);
 
-        if (!otpCookie || otpCookie.otp !== userOtp) {
-            console.log("Otp is wrong or not provided");
+        if (cookieOtp && cookieOtp.otp && userOtp && cookieOtp.otp.toString() === userOtp.toString()) {
+            // Correct OTP
+            return res.redirect('/newpassword');
+        } else {
+            console.log("Otp is wrong");
             return res.redirect('back');
-        }
-        if(userOtp == otpCookie){
-            console.log(`OTP Match`);
-            res.clearCookie('otp');
-            return res.redirect('/');
         }
     } catch (err) {
         console.log(err);
         return res.redirect('back');
     }
 };
+
 
 
 const resetPassword = (req,res) => {
