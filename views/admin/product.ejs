@@ -61,24 +61,23 @@
                                                 </thead>
 
                                                 <tbody>
-                                                    <tr>
+                                                    <% product.map((prod) => { %>
+                                                        <tr>
                                                         <td>
                                                             <div class="table-image">
                                                                 <img src="/public/assets/images/product/1.png" class="img-fluid" alt="">
                                                             </div>
                                                         </td>
 
-                                                        <td>Aata Buscuit</td>
-
-                                                        <td>Buscuit</td>
-
-                                                        <td>12</td>
-
-                                                        <td class="td-price">$95.97</td>
-
-                                                        <td class="status-danger">
-                                                            <span>Pending</span>
-                                                        </td>
+                                                        <td><%= prod.productName %></td>
+                                                        
+                                                        <td><%= prod.categoryId.categoryName %></td>
+                                                        
+                                                        <td><%= prod.subcategoryId.subcategoryName %></td>
+                                                        
+                                                        <td><%= prod.productPrice %></td>
+                                                        
+                                                        <td class="td-price"><%= prod.productQty %></td>
 
                                                         <td>
                                                             <ul>
@@ -102,6 +101,7 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
+                                                    <% }) %>
 
                                                     <tr>
                                                         <td>

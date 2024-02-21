@@ -22,15 +22,19 @@
                                         <h2>Welcome To Fastkart</h2>
                                         <span>Create New Account</span>
                                     </div>
-                                    <form action="/addUser" method="post">
+                                    <form action="/addUser" method="post" enctype="multipart/form-data">
                                       <div class="form-group">
                                         <input type="text" id="text" name="name" placeholder="Full Name" required>
                                       </div>
                                       <div class="form-group">
                                         <input type="email" id="email" name="email" placeholder="Email address" required>
                                       </div>
-                                      <div class="form-group">
-                                        <input type="password" id="password" name="password" placeholder="Password" required>
+                                      <div class="form-group d-flex">
+                                        <input type="password" class="w-50 me-2" name="password" placeholder="Password" required>
+                                        <input type="password" class="w-50 ms-2" name="cpassword" placeholder="Confirm Password" required>
+                                      </div>
+                                      <div class="form-group ">
+                                        <input type="file" accept="image/*" class="w-50 me-2" name="profile_pic" placeholder="Password" required>
                                       </div>
                                       <div class="form-group d-flex align-items-center justify-content-between">
                                         <div class="d-flex">

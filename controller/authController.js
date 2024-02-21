@@ -22,14 +22,44 @@ const register = (req,res) => {
 }
 
 const addUser = async (req,res) => {
-    const {name,email,password} = req.body
+    const {name,email,password,cpassword} = req.body
     try{
-        let userCreate = await userModel.create({
+        if(password==cpassword){
+            let userCreate = await userModel.create({
+                name,
+                email,
+                profile_pic: req.file.path,
+                password : await bcrypt.hash(password,10)
+            })
+            return res.redirect('/login');
+        }
+        return res.send(`enter both password same`)
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+const updateUser = async (req,res) => {
+    try{
+        const {name,email} = req.body
+        const update = await userModel.findByIdAndUpdate(req.body.id,{
             name,
-            email,
-            password : await bcrypt.hash(password,10)
+            email
         })
-        return res.redirect('/login');
+        return res.redirect('back')
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+const deleteAccount = async (req,res) => {
+    try{
+        let id = req.query.id
+        let deleteUser = await userModel.findByIdAndDelete(id)
+        req.logout()
+        return res.redirect('/')
     }catch(err){
         console.log(err);
         return false
@@ -56,6 +86,7 @@ const forgotPassword = async(req,res) => {
         let templatePath = path.join(__dirname, '../views/admin/mail.ejs');
         if(checkEmail){
             let otp = Math.floor(Math.random() * 1000000);
+            let otpPlus = await bcrypt.hash(otp.toString(), 10);
             let template = await ejs.renderFile(templatePath, { checkEmail, otp });
         var transporter = nodemailer.createTransport({
             service: 'gmail',
@@ -83,8 +114,9 @@ const forgotPassword = async(req,res) => {
               console.log(error);
             } else {
               console.log('Email sent: ' + info.response);
+              
               res.cookie('otp',{
-                otp : otp,
+                otp : otpPlus,
                 email : email
               });
               req.flash('success', `A code has been sent to ${email}`)
@@ -122,9 +154,9 @@ const postOtp = async (req, res) => {
         console.log(`user otp is ${userOtp}`);
         console.log('cookieOtp:', cookieOtp);
 
-        if (cookieOtp && cookieOtp.otp && userOtp && cookieOtp.otp.toString() === userOtp.toString()) {
+        if (cookieOtp && await bcrypt.compare(userOtp, cookieOtp.otp)) {
             // Correct OTP
-            return res.redirect('/newpassword');
+            return res.redirect('/reset-password');
         } else {
             console.log("Otp is wrong");
             return res.redirect('back');
@@ -141,6 +173,25 @@ const resetPassword = (req,res) => {
     return res.render('reset-password')
 }
 
+const newPassword = async (req,res) => {
+    try{    
+        let password = req.body.password
+        let cpassword = req.body.cpassword
+        if(password == cpassword){
+            const pass = await userModel.findOneAndUpdate({email : req.cookies.otp.email}, {
+                password : await bcrypt.hash(password, 10)
+            })
+            res.clearCookie('otp')
+            return res.redirect('/login')
+        }
+        console.log(`err..........!`);
+        return false
+    }catch(err) {
+        console.log(err);
+        return false
+    }
+}
+
 
 
 module.exports = {
@@ -149,9 +200,14 @@ module.exports = {
     addUser,
     loginUser,
     logout,
+
+    updateUser,
+    deleteAccount,
+
     forgotpasswordPage,
     forgotPassword,
     otpPage,
     resetPassword,
-    postOtp
+    postOtp,
+    newPassword
 }

@@ -6,11 +6,20 @@ const productSchema = mongoose.Schema({
         ref : 'category',
         required : true
     },
+    subcategoryId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'subcategory',
+        required : true
+    },
     productName : {
         type : String,
         required : true
     },
     productImg : {
+        type : [String],
+        required : true
+    },
+    productPrice : {
         type : String,
         required : true
     },
@@ -18,7 +27,7 @@ const productSchema = mongoose.Schema({
         type : String,
         required : true
     },
-    productPrice : {
+    productDescription : {
         type : String,
         required : true
     },

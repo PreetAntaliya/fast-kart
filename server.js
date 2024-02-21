@@ -21,6 +21,7 @@ app.use(session({
 app.use(flash());
 
 app.use('/public',express.static(path.join(__dirname,'public')))
+app.use('/uploads',express.static(path.join(__dirname,'uploads')))
 
 app.set('view engine','ejs')
 app.use(express.urlencoded())
@@ -31,6 +32,7 @@ app.use(passport.setUser)
 
 app.use('/',require('./routes/index'))
 app.use('/',require('./routes/adminRoutes'))
+app.use('/api',require('./routes/api'))
 
 
 app.listen(port,(err) => {

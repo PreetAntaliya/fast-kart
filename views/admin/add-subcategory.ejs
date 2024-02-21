@@ -42,6 +42,7 @@
                                                         <div class="col-sm-9">
                                                             <select name="categoryId" id="form-control">
                                                                 <option value="select" disabled selected>Select Category</option>
+                                                                
                                                                 <% category.map((cat) => { %>
                                                                     <option value="<%= cat.id %>"><%= cat.categoryName %></option>    
                                                                 <% }) %>
@@ -56,7 +57,7 @@
                                                         </div>
                                                     </div>
     
-                                                    <div class="mb-4 row align-items-center">
+                                                    <!-- <div class="mb-4 row align-items-center">
                                                         <label class="col-sm-3 col-form-label form-label-title">Category
                                                             Image</label>
                                                         <div class="form-group col-sm-9">
@@ -69,7 +70,7 @@
                                                                     </div>
                                                                 </div>
                                                         </div>
-                                                    </div>
+                                                    </div> -->
     
                                                     <!-- <div class="mb-4 row align-items-center">
                                                         <div class="col-sm-3 form-label-title">Select Category Icon</div>

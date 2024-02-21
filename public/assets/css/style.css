@@ -1224,38 +1224,6 @@
     box-shadow: 0 0 0 0.2rem #fbcccb
 }
 
-.btn-success {
-    background-color: #9e65c2 !important;
-    border-color: #9e65c2 !important
-}
-
-.btn-success.disabled,
-.btn-success:disabled {
-    background-color: #9e65c2 !important;
-    border-color: #9e65c2 !important
-}
-
-.btn-success:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem #e3d3ed;
-    box-shadow: 0 0 0 0.2rem #e3d3ed
-}
-
-.btn-danger {
-    background-color: #6670bd !important;
-    border-color: #6670bd !important
-}
-
-.btn-danger.disabled,
-.btn-danger:disabled {
-    background-color: #6670bd !important;
-    border-color: #6670bd !important
-}
-
-.btn-danger:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem #d1d4eb;
-    box-shadow: 0 0 0 0.2rem #d1d4eb
-}
-
 .btn-info {
     background-color: #a927f9 !important;
     border-color: #a927f9 !important;
@@ -1660,38 +1628,6 @@
     color: white;
     background-color: #e71413;
     border-color: #e71413
-}
-
-.btn-success:not([disabled]):not(.disabled).active {
-    background-color: #8645af;
-    border-color: #8645af;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important
-}
-
-.btn-success:not([disabled]):not(.disabled).active:hover,
-.btn-success:not([disabled]):not(.disabled).active:focus,
-.btn-success:not([disabled]):not(.disabled).active:active,
-.btn-success:not([disabled]):not(.disabled).active.active {
-    color: white;
-    background-color: #8645af;
-    border-color: #8645af
-}
-
-.btn-danger:not([disabled]):not(.disabled).active {
-    background-color: #4853a8;
-    border-color: #4853a8;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important
-}
-
-.btn-danger:not([disabled]):not(.disabled).active:hover,
-.btn-danger:not([disabled]):not(.disabled).active:focus,
-.btn-danger:not([disabled]):not(.disabled).active:active,
-.btn-danger:not([disabled]):not(.disabled).active.active {
-    color: white;
-    background-color: #4853a8;
-    border-color: #4853a8
 }
 
 .btn-info:not([disabled]):not(.disabled).active {
@@ -4083,7 +4019,7 @@ strong~p {
     text-transform: capitalize
 }
 
-.btn {
+/* .btn {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -4102,7 +4038,7 @@ strong~p {
     font-size: 14px;
     z-index: 0;
     white-space: nowrap
-}
+} */
 
 .btn:focus {
     -webkit-box-shadow: none;
@@ -4307,50 +4243,6 @@ strong~p {
     background-position: right center;
     background-image: -webkit-gradient(linear, left top, right top, from(#f26464), color-stop(0%), color-stop(#ec1a18), color-stop(100%), to(#fff)) !important;
     background-image: linear-gradient(to right, #f26464, 0%, #ec1a18, 100%, #fff) !important
-}
-
-.btn-success-gradien {
-    background-image: -webkit-gradient(linear, left top, right top, from(#b082ce), color-stop(51%, #8c48b6), to(#b082ce));
-    background-image: linear-gradient(to right, #b082ce 0%, #8c48b6 51%, #b082ce 100%);
-    border: none;
-    color: #fff;
-    background-size: auto 200%;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease
-}
-
-.btn-success-gradien:hover,
-.btn-success-gradien:focus,
-.btn-success-gradien:active,
-.btn-success-gradien.active,
-.btn-success-gradien.hover {
-    -webkit-transition: 1.5s;
-    transition: 1.5s;
-    background-position: right center;
-    background-image: -webkit-gradient(linear, left top, right top, from(#b082ce), color-stop(0%), color-stop(#8c48b6), color-stop(100%), to(#fff)) !important;
-    background-image: linear-gradient(to right, #b082ce, 0%, #8c48b6, 100%, #fff) !important
-}
-
-.btn-danger-gradien {
-    background-image: -webkit-gradient(linear, left top, right top, from(#838bc9), color-stop(51%, #4b57af), to(#838bc9));
-    background-image: linear-gradient(to right, #838bc9 0%, #4b57af 51%, #838bc9 100%);
-    border: none;
-    color: #fff;
-    background-size: auto 200%;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease
-}
-
-.btn-danger-gradien:hover,
-.btn-danger-gradien:focus,
-.btn-danger-gradien:active,
-.btn-danger-gradien.active,
-.btn-danger-gradien.hover {
-    -webkit-transition: 1.5s;
-    transition: 1.5s;
-    background-position: right center;
-    background-image: -webkit-gradient(linear, left top, right top, from(#838bc9), color-stop(0%), color-stop(#4b57af), color-stop(100%), to(#fff)) !important;
-    background-image: linear-gradient(to right, #838bc9, 0%, #4b57af, 100%, #fff) !important
 }
 
 .btn-warning-gradien {
@@ -35391,8 +35283,6 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body
     border-bottom: 1px solid #1d1e26
 }
 
-body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .dataTables_wrapper .btn-danger,
-body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .dataTables_wrapper .btn-success,
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .dataTables_wrapper .btn-primary {
     color: #fff
 }
