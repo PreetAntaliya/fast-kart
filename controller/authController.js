@@ -192,6 +192,41 @@ const newPassword = async (req,res) => {
     }
 }
 
+const changePasswordPage = (req,res) => {
+    let user = req.user
+    return res.render('change-password',{user})
+}
+
+const changePassword = async (req,res) => {
+    try{
+        const {currentPassword,newPassword,cpassword,email} = req.body
+        let compare = await bcrypt.compare(currentPassword,req.user.password)
+        if(compare){
+            if(newPassword == cpassword){
+                let change = await userModel.findOneAndUpdate({email: email}, {
+                    password : await bcrypt.hash(newPassword, 10)
+                })
+                if (changeSuccessful) {
+                    req.logout((err) => {
+                        if (err) {
+                            console.error(err);
+                            return res.status(500).send("Error logging out");
+                        }
+                        res.redirect('/login'); // Redirect only if logout was successful
+                    });
+                } else {
+                    return res.status(400).send("Failed to change password");
+                }
+            }
+            return false
+        }
+        return false
+    }catch(err) {
+        console.log(err);
+        return false
+    }
+}
+
 
 
 module.exports = {
@@ -209,5 +244,7 @@ module.exports = {
     otpPage,
     resetPassword,
     postOtp,
-    newPassword
+    newPassword,
+    changePasswordPage,
+    changePassword
 }

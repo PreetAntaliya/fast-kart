@@ -2,6 +2,7 @@ const categoryModel = require('../models/categoryModel')
 const subcategoryModel = require('../models/subcategoryModel')
 const exsubcategoryModel = require('../models/exsubcategory')
 const productModel = require('../models/productModel')
+const fs = require("fs");
 
 // Dashboard
 const dashboard = async (req,res) => {
@@ -34,6 +35,93 @@ const addProduct = async(req,res) => {
         let excategory = await exsubcategoryModel.find({})
         return res.render('admin/add-product',{user,category,subcategory})
     }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+const createProduct = async (req,res) => {
+    try{
+        const {categoryId,subcategoryId,productName,productQty,productPrice,productDescription} = req.body
+        const productImg = req.files.map(file => file.path)
+        const productCreate = await productModel.create({
+            categoryId,
+            subcategoryId,
+            productName,
+            productQty,
+            productPrice,
+            productDescription,
+            productImg
+        })
+        return res.redirect('back')
+    }catch(err) {
+        console.log(err);
+        return false
+    }
+}
+
+const categoryFilterProduct = async(req,res) => {
+    try{
+        let id = req.query.id;
+        console.log(id);
+        let subcategory = await subcategoryModel.find({}).populate('categoryId')
+        var ans = subcategory.filter((val)=>{
+            return val.categoryId._id == id
+        })
+        return res.json(
+            ans
+        )
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+const editProductPage = async (req,res) => {
+    try{
+        let id= req.query.id
+        let user = req.user
+        let category = await categoryModel.find({status : 1})
+        let subcategory = await subcategoryModel.find({})
+        let single = await productModel.findById(id).populate('subcategoryId').populate('categoryId')
+        return res.render('admin/edit-product', {single,category,subcategory,user})
+    } catch(err) {
+        console.log(err);
+        return false
+    }
+}
+
+const updateProduct = async (req,res) => {
+    try{
+        const {id,categoryId,subcategoryId,productName,productQty,productPrice,productDescription} = req.body
+        console.log(req.body);
+        const productCreate = await productModel.findByIdAndUpdate(id,{
+            categoryId,
+            subcategoryId,
+            productName,
+            productQty,
+            productPrice,
+            productDescription,
+        })
+        return res.redirect('/product')
+    }catch(err){
+        console.log(err);
+        return false
+    }
+}
+
+const deleteProduct = async(req,res) => {
+    try{
+        let imgRecord = await productModel.findById(req.query.id)
+        let imgPath = imgRecord.productImg
+        imgPath.map((img) => {
+            fs.unlinkSync(img)
+        })
+
+        let record = await productModel.findByIdAndDelete(req.query.id);
+        return res.redirect('back')
+
+    } catch(err) {
         console.log(err);
         return false
     }
@@ -214,43 +302,6 @@ const categoryFilter = async(req,res) => {
     }
 }
 
-const createProduct = async (req,res) => {
-    try{
-        const {categoryId,subcategoryId,productName,productQty,productPrice,productDescription} = req.body
-        const productImg = req.files.map(file => file.path)
-        const productCreate = await productModel.create({
-            categoryId,
-            subcategoryId,
-            productName,
-            productQty,
-            productPrice,
-            productDescription,
-            productImg
-        })
-        return res.redirect('back')
-    }catch(err) {
-        console.log(err);
-        return false
-    }
-}
-
-const categoryFilterProduct = async(req,res) => {
-    try{
-        let id = req.query.id;
-        console.log(id);
-        let subcategory = await subcategoryModel.find({}).populate('categoryId')
-        var ans = subcategory.filter((val)=>{
-            return val.categoryId._id == id
-        })
-        return res.json(
-            ans
-        )
-    }catch(err){
-        console.log(err);
-        return false
-    }
-}
-
 
 
 // Ex Sub Category
@@ -357,6 +408,9 @@ module.exports = {
     addProduct,
     categoryFilterProduct,
     createProduct,
+    editProductPage,
+    updateProduct,
+    deleteProduct,
     
     category,
     addCategory,

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<%- include('head.ejs') %>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper start -->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('top-header.ejs') %>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body start -->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <%- include('header.ejs') %>
+            <!-- Page Sidebar Ends-->
+
+            <div class="page-body">
+
+                <!-- New Product Add Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h5>Product Information</h5>
+                                            </div>
+
+                                            <form action="/updateProduct" method="post" class="theme-form theme-form-2 mega-form">
+                                                <input type="text" value="<%= single.id %>" name="id" hidden>
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Product Name</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text" name="productName" value="<%= single.productName %>" placeholder="Product Name">
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Category</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="js-example-basic-single w-100" onchange="categoryFilter()" id="categoryId" name="categoryId">
+                                                            <option selected disabled>Category Menu</option>
+                                                            <% category.map((cate) => { %>
+                                                                <option <% if (cate.categoryName == single.categoryId.categoryName) { %> selected <% } %> value="<%= cate.id %>"><%= cate.categoryName %></option>
+                                                            <% }) %>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Subcategory</label>
+                                                    <div class="col-sm-9">
+                                                        <select class="js-example-basic-single w-100" id="subcategoryId" name="subcategoryId">
+                                                            <option value="<%= single.subcategoryId.id %>"><%= single.subcategoryId.subcategoryName %></option>
+                                                            <option value="select" class="text-center text-danger" disabled>---change category for change this---</option>
+                                                        </select>
+                                                    </div>
+                                                </div>    
+                                                
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Subcategory</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="file" disabled name="productImg" accept="image/*" multiple id="productImg">
+                                                        <span class="text-danger">*edit not available</span>
+                                                    </div>
+                                                </div>    
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">productPrice</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="productPrice" value="<%= single.productPrice %>" id="productPrice">
+                                                    </div>
+                                                </div>   
+
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">productQty</label>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" class="form-control" name="productQty" value="<%= single.productQty %>" id="productQty">
+                                                    </div>
+                                                </div>    
+                                                
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">productDescription</label>
+                                                    <div class="col-sm-9">
+                                                        <!-- <input type="text" name="productQty" id="productQty"> -->
+                                                        <textarea name="productDescription" id="productDescription" class="w-100" cols="30" rows="5">
+                                                            <%= single.productDescription %>
+                                                        </textarea> <br>
+                                                        <span class="text-danger">*please remove space from start</span>
+                                                    </div>
+                                                </div>    
+                                                
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title"></label>
+                                                    <div class="col-sm-9">
+                                                        <input type="submit" class="btn btn-success" value="submit">
+                                                    </div>
+                                                </div>    
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    
+                <!-- New Product Add End -->
+
+                <!-- footer Start -->
+                <div class="container-fluid">
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <!-- footer En -->
+            </div>
+            <!-- Container-fluid End -->
+        </div>
+        <!-- Page Body End -->
+    </div>
+    <!-- page-wrapper End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- latest js -->
+    <script src="/public/assets/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="/public/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="/public/assets/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/public/assets/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="/public/assets/js/scrollbar/simplebar.js"></script>
+    <script src="/public/assets/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/public/assets/js/config.js"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="/public/assets/js/bootstrap-tagsinput.min.js"></script>
+    <script src="/public/assets/js/sidebar-menu.js"></script>
+
+    <!-- customizer js -->
+    <script src="/public/assets/js/customizer.js"></script>
+
+    <!--Dropzon js -->
+    <script src="/public/assets/js/dropzone/dropzone.js"></script>
+    <script src="/public/assets/js/dropzone/dropzone-script.js"></script>
+
+    <!-- Plugins js -->
+    <script src="/public/assets/js/notify/bootstrap-notify.min.js"></script>
+    <script src="/public/assets/js/notify/index.js"></script>
+
+    <!-- ck editor js -->
+    <!-- <script src="/public/assets/js/ckeditor.js"></script> -->
+    <!-- <script src="/public/assets/js/ckeditor-custom.js"></script> -->
+
+    <!-- select2 js -->
+    <!-- <script src="/public/assets/js/select2.min.js"></script> -->
+    <!-- <script src="/public/assets/js/select2-custom.js"></script> -->
+
+    <!-- sidebar effect -->
+    <script src="/public/assets/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="/public/assets/js/script.js"></script>
+
+    <script type="text/javascript">
+        function categoryFilter() {
+          var id = document.getElementById('categoryId').value;
+          $.ajax({
+            type : "GET",
+            url : `http://localhost:8000/categoryFilterProduct?id=${id}`,
+            dataType : 'json',
+            success:function(res){
+                var data = ""
+                data += `<option>---select---</option>`
+               res.forEach((val)=>{
+                    data += `   
+                    <option value="${val._id}">${val.subcategoryName}</option>
+                            `
+               })
+               document.getElementById('subcategoryId').innerHTML = data;
+            }
+         })
+        }
+    </script>
+
+</body>
+
+</html>

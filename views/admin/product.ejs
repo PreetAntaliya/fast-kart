@@ -53,9 +53,9 @@
                                                         <th>Product Image</th>
                                                         <th>Product Name</th>
                                                         <th>Category</th>
-                                                        <th>Current Qty</th>
+                                                        <th>SubCategory</th>
                                                         <th>Price</th>
-                                                        <th>Status</th>
+                                                        <th>Current Qty</th>
                                                         <th>Option</th>
                                                     </tr>
                                                 </thead>
@@ -65,7 +65,7 @@
                                                         <tr>
                                                         <td>
                                                             <div class="table-image">
-                                                                <img src="/public/assets/images/product/1.png" class="img-fluid" alt="">
+                                                                <img src="<%= prod.productImg[0] %>" class="img-fluid" alt="">
                                                             </div>
                                                         </td>
 
@@ -82,19 +82,20 @@
                                                         <td>
                                                             <ul>
                                                                 <li>
-                                                                    <a href="order-detail.html">
+                                                                    <a href="/viewProduct?id=<%= prod.id  %>">
                                                                         <i class="ri-eye-line"></i>
                                                                     </a>
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="javascript:void(0)">
+                                                                    <a href="/editProduct?id=<%= prod.id  %>">
                                                                         <i class="ri-pencil-line"></i>
                                                                     </a>
                                                                 </li>
 
                                                                 <li>
-                                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                                                                    <!-- data-bs-toggle="modal" data-bs-target="#exampleModalToggle" -->
+                                                                    <a href="/deleteProduct?id=<%= prod.id  %>" >
                                                                         <i class="ri-delete-bin-line"></i>
                                                                     </a>
                                                                 </li>

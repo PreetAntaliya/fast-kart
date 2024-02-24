@@ -1192,22 +1192,6 @@
     color: var(--theme-secondary) !important
 }
 
-.btn-primary {
-    background-color: #0da487 !important;
-    border-color: #0da487 !important
-}
-
-.btn-primary.disabled,
-.btn-primary:disabled {
-    background-color: #0da487 !important;
-    border-color: #0da487 !important
-}
-
-.btn-primary:focus {
-    -webkit-box-shadow: 0 0 0 0.2rem #58f2d4;
-    box-shadow: 0 0 0 0.2rem #58f2d4
-}
-
 .btn-secondary {
     background-color: #ef3f3e !important;
     border-color: #ef3f3e !important
@@ -1596,22 +1580,6 @@
     color: white;
     background-color: #505bb7 !important;
     border-color: #505bb7 !important
-}
-
-.btn-primary:not([disabled]):not(.disabled).active {
-    background-color: #097560;
-    border-color: #097560;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important
-}
-
-.btn-primary:not([disabled]):not(.disabled).active:hover,
-.btn-primary:not([disabled]):not(.disabled).active:focus,
-.btn-primary:not([disabled]):not(.disabled).active:active,
-.btn-primary:not([disabled]):not(.disabled).active.active {
-    color: white;
-    background-color: #097560;
-    border-color: #097560
 }
 
 .btn-secondary:not([disabled]):not(.disabled).active {
@@ -4200,27 +4168,6 @@ strong~p {
 .btn-outline {
     border: 1px solid var(--theme-color);
     color: var(--theme-color)
-}
-
-.btn-primary-gradien {
-    background-image: -webkit-gradient(linear, left top, right top, from(#10caa6), color-stop(51%, #0a7e68), to(#10caa6));
-    background-image: linear-gradient(to right, #10caa6 0%, #0a7e68 51%, #10caa6 100%);
-    border: none;
-    color: #fff;
-    background-size: auto 200%;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-    color: #fff
-}
-
-.btn-primary-gradien:focus,
-.btn-primary-gradien:active,
-.btn-primary-gradien.active {
-    -webkit-transition: 1.5s;
-    transition: 1.5s;
-    background-position: right center;
-    background-image: -webkit-gradient(linear, left top, right top, from(#10caa6), color-stop(0%), color-stop(#0a7e68), color-stop(100%), to(#fff)) !important;
-    background-image: linear-gradient(to right, #10caa6, 0%, #0a7e68, 100%, #fff) !important
 }
 
 .btn-secondary-gradien {
@@ -23983,11 +23930,6 @@ footer.blockquote-footer {
     padding: 5px 12px
 }
 
-.product-box .modal .modal-header .product-box .product-details .product-qnty fieldset .input-group .btn-primary {
-    background-color: #59667a !important;
-    border: 1px solid #59667a !important
-}
-
 .product-box .modal .modal-header .btn-close {
     position: absolute;
     right: 15px;
@@ -35283,10 +35225,6 @@ body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body
     border-bottom: 1px solid #1d1e26
 }
 
-body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .dataTables_wrapper .btn-primary {
-    color: #fff
-}
-
 body.dark-only .page-wrapper .page-body-wrapper .page-body .card:not(.email-body) .dataTables_wrapper .dataTables_length select {
     background-color: #1d1e26;
     color: rgba(255, 255, 255, 0.6);
@@ -37357,7 +37295,12 @@ body.dark-only .code-box-copy .code-box-copy__btn {
     color: #fff
 }
 
-body.dark-only .code-box-copy code[class*="language-"],
+::selection{
+    background-color: #0DA487 !important;
+    color: #fff !important;
+}
+
+/* body.dark-only .code-box-copy code[class*="language-"],
 body.dark-only .code-box-copy pre[class*="language-"] {
     text-shadow: 0px 1px #000
 }
@@ -37372,7 +37315,7 @@ body.dark-only .code-box-copy code[class*="language-"] ::selection,
 body.dark-only .code-box-copy pre[class*="language-"] ::selection {
     text-shadow: none;
     background: #262932
-}
+} */
 
 body.dark-only table.fixedHeader-floating {
     background-color: #1d1e26
